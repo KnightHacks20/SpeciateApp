@@ -39,19 +39,18 @@ export default class CameraComponent extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    flexDirection: 'column',
+    height: 400,
     backgroundColor: 'black'
   },
   preview: {
-    flex: 1,
+    height: 400,
     justifyContent: 'flex-end',
     alignItems: 'center'
   },
   captureContainer: {
     position: 'absolute',
     alignSelf: 'center',
-    margin: 20,
+    margin: 30,
     bottom: 0
   },
   capture: {
