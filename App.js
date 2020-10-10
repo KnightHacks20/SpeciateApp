@@ -24,6 +24,8 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
+import { registerRootComponent } from 'expo';
+
 const App: () => React$Node = () => {
   return (
     <>
@@ -110,5 +112,7 @@ const styles = StyleSheet.create({
     textAlign: 'right',
   },
 });
+
+registerRootComponent(App);
 
 export default App;
