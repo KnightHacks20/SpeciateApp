@@ -3,7 +3,6 @@ import React from 'react';
 import {
   StyleSheet,
   View,
-  Text,
   TouchableOpacity
 } from 'react-native';
 
@@ -12,37 +11,33 @@ import { RNCamera } from 'react-native-camera';
 export default class CameraComponent extends React.Component {
   render() {
     return (
-      <View style={styles.container}>
+      <>
         <RNCamera 
           ref = {ref => {
             this.camera = ref;
           }}
           type={RNCamera.Constants.Type.back}
           flashMode={RNCamera.Constants.FlashMode.on}
+          captureAudio={false}
           style={styles.preview}
         />
         <View style={styles.captureContainer}>
           <TouchableOpacity onPress={this.takePicture.bind(this)} style={styles.capture}/>
         </View>
-      </View>
+      </>
     );
   }
 
   takePicture = async () => {
     if (this.camera) {
-      const options = { quality: 0.5, base64: true };
+      const options = { quality: 0.5, base64: true, exif: true };
       const data = await this.camera.takePictureAsync(options);
-      console.log(data.uri);
+      this.props.onImageCapture(data.uri);
     }
   };
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: 'column',
-    backgroundColor: 'black'
-  },
   preview: {
     flex: 1,
     justifyContent: 'flex-end',
