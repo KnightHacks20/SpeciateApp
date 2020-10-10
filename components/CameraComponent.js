@@ -21,10 +21,8 @@ export default class CameraComponent extends React.Component {
           flashMode={RNCamera.Constants.FlashMode.on}
           style={styles.preview}
         />
-        <View style={{ flex: 0, flexDirection: 'row', justifyContent: 'center' }}>
-          <TouchableOpacity onPress={this.takePicture.bind(this)} style={styles.capture}>
-            <Text style={{ fontSize: 14 }}> SNAP </Text>
-          </TouchableOpacity>
+        <View style={styles.captureContainer}>
+          <TouchableOpacity onPress={this.takePicture.bind(this)} style={styles.capture}/>
         </View>
       </View>
     );
@@ -50,13 +48,20 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     alignItems: 'center'
   },
-  capture: {
-    flex: 0,
-    backgroundColor: '#fff',
-    borderRadius: 5,
-    padding: 15,
-    paddingHorizontal: 20,
+  captureContainer: {
+    position: 'absolute',
     alignSelf: 'center',
     margin: 20,
+    bottom: 0
+  },
+  capture: {
+    flex: 0,
+    backgroundColor: 'red',
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+    borderColor: 'white',
+    borderWidth: 3,
+    alignSelf: 'center',
   }
 });
