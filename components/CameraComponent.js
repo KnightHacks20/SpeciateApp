@@ -18,6 +18,7 @@ export default class CameraComponent extends React.Component {
           }}
           type={RNCamera.Constants.Type.back}
           flashMode={RNCamera.Constants.FlashMode.on}
+          captureAudio={false}
           style={styles.preview}
         />
         <View style={styles.captureContainer}>

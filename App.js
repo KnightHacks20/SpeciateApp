@@ -15,7 +15,7 @@ export default class App extends React.Component {
 
     const locationData = await GetLocation.getCurrentPosition({
       enableHighAccuracy: true,
-      timeout: 5000
+      timeout: 15000
     });
     console.log(locationData);
   }
