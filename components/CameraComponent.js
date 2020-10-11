@@ -1,8 +1,16 @@
 import React from 'react';
 
-import {StyleSheet, View, Text, TouchableOpacity, KeyboardAvoidingView, SafeAreaView} from 'react-native';
+import {
+  StyleSheet,
+  View,
+  Text,
+  TouchableOpacity,
+  KeyboardAvoidingView,
+  SafeAreaView,
+  ScrollView,
+} from 'react-native';
 
-import {Overlay} from 'react-native-elements';
+import {Overlay, Button} from 'react-native-elements';
 
 import {RNCamera} from 'react-native-camera';
 
@@ -37,9 +45,18 @@ export default class CameraComponent extends React.Component {
             overlayStyle={{minWidth: '90%', maxHeight: '90%', borderRadius: 10}}
             animationType={'slide'}
             transparent={true}>
-              <KeyboardAvoidingView behavior='padding'>
+            <KeyboardAvoidingView behavior="padding">
+              <ScrollView style={{marginTop: 10}}>
                 <FormComponent photoURI={this.state.photoURI} />
-              </KeyboardAvoidingView>
+                <Button
+                  type="clear"
+                  title="Close"
+                  buttonStyle={{height: 50}}
+                  containerStyle={{marginBottom: 10, paddingHorizontal: 10}}
+                  onPress={this.newPicture}
+                />
+              </ScrollView>
+            </KeyboardAvoidingView>
           </Overlay>
         </SafeAreaView>
       </>
