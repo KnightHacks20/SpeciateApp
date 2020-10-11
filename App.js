@@ -6,19 +6,7 @@ import {
 
 import CameraComponent from './components/CameraComponent';
 
-import GetLocation from 'react-native-get-location';
-
 export default class App extends React.Component {
-  onImageCapture = async (imageUri) => {
-    console.log(imageUri);
-
-    const locationData = await GetLocation.getCurrentPosition({
-      enableHighAccuracy: true,
-      timeout: 15000,
-    });
-    console.log(locationData);
-  };
-
   render() {
     return (
       <View style={styles.container}>

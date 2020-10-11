@@ -23,25 +23,26 @@ export default class SpeciesStatusComponent extends React.Component {
       uri: this.props.uri,
       name: 'Test.jpg',
     };
+    
     const body = new FormData();
     body.append('file', file);
-    const url =
-      'https://www.floydlabs.com/serve/HEymaCcSNwJrkYHyCQHy3Q/predict';
+    
+    const url = 'https://www.floydlabs.com/serve/HEymaCcSNwJrkYHyCQHy3Q/predict';
 
     fetch(url, {
       method: 'POST',
       body: body,
     })
-      .then((res) => res.json())
-      .then((json) => {
-        this.setState({
-          isLoading: false,
-          hasFetched: true,
-          commonName: json.common_name,
-          latinName: json.latin_name,
-          status: json.status,
-        });
+    .then((res) => res.json())
+    .then((json) => {
+      this.setState({
+        isLoading: false,
+        hasFetched: true,
+        commonName: json.common_name,
+        latinName: json.latin_name,
+        status: json.status,
       });
+    });
   }
 
   render() {

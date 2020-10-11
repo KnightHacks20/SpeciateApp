@@ -111,10 +111,7 @@ export default class CameraComponent extends React.Component {
       } else {
         const options = {quality: 0.5, base64: true, pauseAfterCapture: true};
         const data = await this.camera.takePictureAsync(options);
-        console.log(data.uri);
         this.setState({paused: true, photoURI: data.uri});
-
-        this.props.onImageCapture(data.uri);
       }
     }
   };
