@@ -25,8 +25,9 @@ export default class FormComponent extends React.Component {
 
   handlePress(event) {
     console.log(this.state);
-    // this.setState({loading: true})
+
     this.setState(initialState);
+    this.setState({loading: true});
   }
 
   render() {
