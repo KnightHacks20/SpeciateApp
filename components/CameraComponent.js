@@ -17,11 +17,12 @@ import {Grid, Row, Col} from 'react-native-easy-grid';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import FormComponent from './FormComponent.js';
+import MapViewComponent from './MapViewComponent.js';
 
 const {FlashMode: CameraFlashMode} = RNCamera.Constants;
 
 export default class CameraComponent extends React.Component {
-  state = {paused: false, photoURI: '', flashMode: CameraFlashMode.off};
+  state = {paused: false, photoURI: '', flashMode: CameraFlashMode.off, isMapViewVisible: false};
 
   render() {
     return (
@@ -64,7 +65,18 @@ export default class CameraComponent extends React.Component {
             </Col>
           </Row>
         </Grid>
+
         <SafeAreaView>
+          <Overlay
+            isVisible={this.state.isMapViewVisible}
+            onBackdropPress={this.hideMapView}
+            overlayStyle={{minWidth: '90%', maxHeight: '93%', borderRadius: 10}}
+            animationType={'slide'}
+            transparent={true}
+          >
+            <MapViewComponent />
+          </Overlay>
+
           <Overlay
             isVisible={this.state.paused}
             onBackdropPress={this.newPicture}
@@ -96,7 +108,15 @@ export default class CameraComponent extends React.Component {
   }
 
   showMapView = () => {
-    console.log('map view');
+    this.setState({
+      isMapViewVisible: true
+    });
+  }
+
+  hideMapView = () => {
+    this.setState({
+      isMapViewVisible: false
+    });
   }
 
   newPicture = () => {

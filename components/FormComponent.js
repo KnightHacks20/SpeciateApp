@@ -48,6 +48,13 @@ export default class FormComponent extends React.Component {
     }, 2000);
   }
 
+  onLocationDataReceive = (latVal, longVal) => {
+    this.setState({
+      latitude: '' + latVal,
+      longitude: '' + longVal
+    });
+  }
+
   render() {
     return (
       <>
@@ -70,7 +77,7 @@ export default class FormComponent extends React.Component {
         </View>
         <View style={{marginLeft: 40, marginRight: 40, marginTop: 16, marginBottom: 16, 
                       backgroundColor: '#D5D5D5', height: 1}} />
-        <SpeciesStatusComponent uri={this.props.photoURI} />
+        <SpeciesStatusComponent uri={this.props.photoURI} onLocationDataReceive={this.onLocationDataReceive} />
         <View style={{flexDirection: 'row', marginTop: 40}}>
           <Input
             label="Latitude"

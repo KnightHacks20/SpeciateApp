@@ -2,6 +2,8 @@ import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {Button} from 'react-native-elements';
 
+import GetLocation from 'react-native-get-location';
+
 export default class SpeciesStatusComponent extends React.Component {
   constructor(props) {
     super(props);
@@ -15,6 +17,18 @@ export default class SpeciesStatusComponent extends React.Component {
   }
 
   handlePress(event) {
+    GetLocation.getCurrentPosition({
+      enableHighAccuracy: true,
+      timeout: 15000,
+    })
+    .then(location => {
+      this.props.onLocationDataReceive(location.latitude, location.longitude);
+    })
+    .catch(error => {
+        const { code, message } = error;
+        console.warn(code, message);
+    });
+
     this.setState({isLoading: true});
 
     console.log(this.props.uri);
