@@ -1,17 +1,21 @@
 import React from 'react';
 
-import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import {StyleSheet, View, Text, TouchableOpacity, KeyboardAvoidingView, SafeAreaView} from 'react-native';
+
+import {Overlay} from 'react-native-elements';
 
 import {RNCamera} from 'react-native-camera';
 
+import FormComponent from './FormComponent.js';
+
 export default class CameraComponent extends React.Component {
-  state = {paused: false};
+  state = {paused: false, photoURI: ''};
 
   render() {
     return (
       <>
-        <RNCamera 
-          ref = {ref => {
+        <RNCamera
+          ref={(ref) => {
             this.camera = ref;
           }}
           type={RNCamera.Constants.Type.back}
@@ -26,6 +30,18 @@ export default class CameraComponent extends React.Component {
             style={this.state.paused ? styles.capturePaused : styles.capture}
           />
         </View>
+        <SafeAreaView>
+          <Overlay
+            isVisible={this.state.paused}
+            onBackdropPress={this.newPicture}
+            overlayStyle={{minWidth: '90%', maxHeight: '90%', borderRadius: 10}}
+            animationType={'slide'}
+            transparent={true}>
+              <KeyboardAvoidingView behavior='padding'>
+                <FormComponent photoURI={this.state.photoURI} />
+              </KeyboardAvoidingView>
+          </Overlay>
+        </SafeAreaView>
       </>
     );
   }
@@ -42,7 +58,9 @@ export default class CameraComponent extends React.Component {
       } else {
         const options = {quality: 0.5, base64: true, pauseAfterCapture: true};
         const data = await this.camera.takePictureAsync(options);
-        this.setState({paused: true});
+        console.log(data.uri);
+        this.setState({paused: true, photoURI: data.uri});
+
         this.props.onImageCapture(data.uri);
       }
     }

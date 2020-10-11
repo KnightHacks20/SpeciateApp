@@ -26,15 +26,6 @@ export default class App extends React.Component {
   
   render() {
     return (
-//       <KeyboardAvoidingView
-//         behavior={Platform.OS == 'ios' ? 'padding' : 'height'}>
-//         <ScrollView>
-//           <CameraComponent />
-//           <View style={styles.sectionContainer}>
-//             <FormComponent />
-//           </View>
-//         </ScrollView>
-//       </KeyboardAvoidingView>
       <View style={styles.container}>
         <CameraComponent onImageCapture={this.onImageCapture} />
       </View>
