@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {StyleSheet, View, Text, TouchableOpacity} from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 
 import {RNCamera} from 'react-native-camera';
 
@@ -9,13 +9,14 @@ export default class CameraComponent extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <RNCamera
-          ref={(ref) => {
+      <>
+        <RNCamera 
+          ref = {ref => {
             this.camera = ref;
           }}
           type={RNCamera.Constants.Type.back}
-          flashMode={RNCamera.Constants.FlashMode.on}
+          flashMode={RNCamera.Constants.FlashMode.auto}
+          captureAudio={false}
           style={styles.preview}
           captureAudio={false}
         />
@@ -25,7 +26,7 @@ export default class CameraComponent extends React.Component {
             style={this.state.paused ? styles.capturePaused : styles.capture}
           />
         </View>
-      </View>
+      </>
     );
   }
 
@@ -42,17 +43,13 @@ export default class CameraComponent extends React.Component {
         const options = {quality: 0.5, base64: true, pauseAfterCapture: true};
         const data = await this.camera.takePictureAsync(options);
         this.setState({paused: true});
-        console.log(data.uri);
+        this.props.onImageCapture(data.uri);
       }
     }
   };
 }
 
 const styles = StyleSheet.create({
-  container: {
-    height: 400,
-    backgroundColor: 'black',
-  },
   preview: {
     height: 400,
     justifyContent: 'flex-end',
