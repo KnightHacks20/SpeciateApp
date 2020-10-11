@@ -1,6 +1,11 @@
 import React from 'react';
-import { KeyboardAvoidingView, ScrollView, StyleSheet, Text, View } from 'react-native';
-import { Button } from 'react-native-elements';
+import {
+  KeyboardAvoidingView,
+  ScrollView,
+  StyleSheet,
+  Platform,
+  View,
+} from 'react-native';
 
 import CameraComponent from './components/CameraComponent';
 import FormComponent from './components/FormComponent';
@@ -8,7 +13,8 @@ import FormComponent from './components/FormComponent';
 export default class App extends React.Component {
   render() {
     return (
-      <KeyboardAvoidingView behavior='padding'>
+      <KeyboardAvoidingView
+        behavior={Platform.OS == 'ios' ? 'padding' : 'height'}>
         <ScrollView>
           <CameraComponent />
           <View style={styles.sectionContainer}>
@@ -23,6 +29,6 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   sectionContainer: {
     marginTop: 32,
-    paddingHorizontal: 24
-  }
-})
+    paddingHorizontal: 24,
+  },
+});
