@@ -41,7 +41,7 @@ export default class SpeciesStatusComponent extends React.Component {
     const body = new FormData();
     body.append('file', file);
     
-    const url = 'https://www.floydlabs.com/serve/HEymaCcSNwJrkYHyCQHy3Q/predict';
+    const url = 'https://www.floydlabs.com/serve/rHpqVCwRkZVVau2fXW4fgK/predict';
 
     fetch(url, {
       method: 'POST',
@@ -73,7 +73,7 @@ export default class SpeciesStatusComponent extends React.Component {
         ) : (
           <View>
             <View
-              style={{backgroundColor: '#DB6232', padding: 8, borderRadius: 3}}>
+              style={{backgroundColor: colors[this.state.status], padding: 8, borderRadius: 3}}>
               <Text style={styles.status}>{this.state.status}</Text>
             </View>
             <Text style={styles.commonName}>{this.state.commonName}</Text>
@@ -84,6 +84,18 @@ export default class SpeciesStatusComponent extends React.Component {
     );
   }
 }
+
+const colors = {
+  'Extinct': '#302D70',
+  'Extinct in the Wild': '#5F2974',
+  'Critically Endangered': '#BB2A2A',
+  'Endangered': '#DB6232',
+  'Vulnerable': '#DDA03B',
+  'Threatened': '#DFDC46',
+  'Least Concern': '#6EAD45',
+  'Data Deficient': '#737373',
+  'Not Evalutated': '#525453',
+};
 
 const styles = StyleSheet.create({
   container: {
