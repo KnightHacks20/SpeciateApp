@@ -4,7 +4,7 @@ import {
   Platform,
   Text,
   View,
-  TouchableOpacity
+  TouchableOpacity,
 } from 'react-native';
 
 import {Button, Image, Input} from 'react-native-elements';
@@ -36,6 +36,8 @@ export default class FormComponent extends React.Component {
     this.setState({
       date: date,
       time: time,
+      latitude: this.props.locationData.latitude.toString().substr(0, 8),
+      longitude: this.props.locationData.longitude.toString().substr(0, 8),
     });
   }
 
@@ -51,25 +53,28 @@ export default class FormComponent extends React.Component {
   render() {
     return (
       <>
-        <View
-          style={{marginLeft: 0, marginRight: 0, marginBottom: 0}}>
+        <View style={{marginLeft: 0, marginRight: 0, marginBottom: 0}}>
           <Image
             source={{uri: this.props.photoURI}}
             style={{width: '100%', height: 300, borderRadius: 5}}
             PlaceholderContent={<ActivityIndicator />}
           />
-          <TouchableOpacity 
-            style={{position: 'absolute', right: 5, top: 5}} 
+          <TouchableOpacity
+            style={{position: 'absolute', right: 5, top: 5}}
             onPress={this.props.onFormClose}>
-            <Icon
-              name={'close-outline'}
-              color='white'
-              size={30}
-            />
+            <Icon name={'close-outline'} color="white" size={30} />
           </TouchableOpacity>
         </View>
-        <View style={{marginLeft: 40, marginRight: 40, marginTop: 16, marginBottom: 16, 
-                      backgroundColor: '#D5D5D5', height: 1}} />
+        <View
+          style={{
+            marginLeft: 40,
+            marginRight: 40,
+            marginTop: 16,
+            marginBottom: 16,
+            backgroundColor: '#D5D5D5',
+            height: 1,
+          }}
+        />
         <SpeciesStatusComponent uri={this.props.photoURI} />
         <View style={{flexDirection: 'row', marginTop: 40}}>
           <Input

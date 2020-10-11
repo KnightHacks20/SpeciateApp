@@ -12,7 +12,7 @@ import {
 import {Overlay, Button} from 'react-native-elements';
 
 import {RNCamera} from 'react-native-camera';
-
+import GetLocation from 'react-native-get-location';
 import {Grid, Row, Col} from 'react-native-easy-grid';
 import Icon from 'react-native-vector-icons/Ionicons';
 
@@ -21,7 +21,12 @@ import FormComponent from './FormComponent.js';
 const {FlashMode: CameraFlashMode} = RNCamera.Constants;
 
 export default class CameraComponent extends React.Component {
-  state = {paused: false, photoURI: '', flashMode: CameraFlashMode.off};
+  state = {
+    paused: false,
+    photoURI: '',
+    flashMode: CameraFlashMode.off,
+    locationData: {},
+  };
 
   render() {
     return (
@@ -41,8 +46,12 @@ export default class CameraComponent extends React.Component {
             <Col style={styles.alignCenter}>
               <TouchableOpacity onPress={this.toggleFlashMode.bind(this)}>
                 <Icon
-                  name={this.state.flashMode === CameraFlashMode.on ? 'flash-sharp' : 'flash-off-sharp'}
-                  color='white'
+                  name={
+                    this.state.flashMode === CameraFlashMode.on
+                      ? 'flash-sharp'
+                      : 'flash-off-sharp'
+                  }
+                  color="white"
                   size={30}
                 />
               </TouchableOpacity>
@@ -50,16 +59,14 @@ export default class CameraComponent extends React.Component {
             <Col size={2} style={styles.alignCenter}>
               <TouchableOpacity
                 onPress={this.takePicture.bind(this)}
-                style={this.state.paused ? styles.capturePaused : styles.capture}
+                style={
+                  this.state.paused ? styles.capturePaused : styles.capture
+                }
               />
             </Col>
             <Col style={styles.alignCenter}>
               <TouchableOpacity onPress={this.showMapView.bind(this)}>
-                <Icon
-                  name={'map-sharp'}
-                  color='white'
-                  size={30}
-                />
+                <Icon name={'map-sharp'} color="white" size={30} />
               </TouchableOpacity>
             </Col>
           </Row>
@@ -73,7 +80,11 @@ export default class CameraComponent extends React.Component {
             transparent={true}>
             <KeyboardAvoidingView behavior="padding">
               <ScrollView style={{marginTop: 0}}>
-                <FormComponent photoURI={this.state.photoURI} onFormClose={this.newPicture} />
+                <FormComponent
+                  photoURI={this.state.photoURI}
+                  locationData={this.state.locationData}
+                  onFormClose={this.newPicture}
+                />
                 <Button
                   type="clear"
                   title="Close"
@@ -91,13 +102,16 @@ export default class CameraComponent extends React.Component {
 
   toggleFlashMode = () => {
     this.setState({
-      flashMode: this.state.flashMode === CameraFlashMode.on ? CameraFlashMode.off : CameraFlashMode.on
+      flashMode:
+        this.state.flashMode === CameraFlashMode.on
+          ? CameraFlashMode.off
+          : CameraFlashMode.on,
     });
-  }
+  };
 
   showMapView = () => {
     console.log('map view');
-  }
+  };
 
   newPicture = () => {
     this.setState({paused: false});
@@ -110,11 +124,21 @@ export default class CameraComponent extends React.Component {
         this.newPicture();
       } else {
         const options = {quality: 0.5, base64: true, pauseAfterCapture: true};
+
+        // Fetch GPS coordinates
+        const locationData = await GetLocation.getCurrentPosition({
+          enableHighAccuracy: true,
+          timeout: 15000,
+        });
+        // console.log(locationData);
+        this.setState({locationData: locationData});
+
+        // Take photo
         const data = await this.camera.takePictureAsync(options);
         console.log(data.uri);
         this.setState({paused: true, photoURI: data.uri});
 
-        this.props.onImageCapture(data.uri);
+        // this.props.onImageCapture(data.uri);
       }
     }
   };
@@ -124,7 +148,7 @@ const styles = StyleSheet.create({
   alignCenter: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   preview: {
     flex: 1,
