@@ -50,8 +50,8 @@ export default class FormComponent extends React.Component {
 
   onLocationDataReceive = (latVal, longVal) => {
     this.setState({
-      latitude: '' + latVal,
-      longitude: '' + longVal
+      latitude: latVal.toString().substr(0, 10),
+      longitude: longVal.toString().substr(0, 10)
     });
   }
 
