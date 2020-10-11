@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { View } from 'react-native';
+import { Platform, SafeAreaView, TouchableWithoutFeedback, Keyboard, KeyboardAvoidingView, View } from 'react-native';
 
 import { Button, Input } from 'react-native-elements';
 
@@ -25,6 +25,10 @@ export default class FormComponent extends React.Component {
     render() {
         return (
             <>
+                <KeyboardAvoidingView 
+                    behavior={Platform.OS == "ios" ? "padding" : "height"} 
+                    style={{flex: 1}}
+                >
                 <View style={{flexDirection: 'row'}}>
                     <Input 
                         label='Latitude'
@@ -43,6 +47,11 @@ export default class FormComponent extends React.Component {
                         value={this.state.longitude}
                     />
                 </View>
+                </KeyboardAvoidingView>
+                <KeyboardAvoidingView
+                    behavior={Platform.OS == "ios" ? "padding" : "height"} 
+                    style={{flex: 1}}
+                >
                 <Input 
                     label='Date of Sighting' 
                     placeholder='MM-DD-YY'
@@ -72,7 +81,9 @@ export default class FormComponent extends React.Component {
                     loading={this.state.loading} 
                     onPress={(e) => this.handlePress(e)}
                     buttonStyle={{borderRadius: 50, height: 50}}
+                    containerStyle={{marginBottom: 100}}
                 />
+                </KeyboardAvoidingView>
             </>
         );
     }
