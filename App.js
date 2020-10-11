@@ -1,9 +1,6 @@
 import React from 'react';
 import {
-  KeyboardAvoidingView,
-  ScrollView,
   StyleSheet,
-  Platform,
   View,
 } from 'react-native';
 

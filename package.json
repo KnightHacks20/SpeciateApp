@@ -13,9 +13,10 @@
     "react": "16.13.1",
     "react-native": "0.63.3",
     "react-native-camera": "^3.40.0",
+    "react-native-easy-grid": "^0.2.2",
     "react-native-elements": "^2.3.2",
-    "react-native-vector-icons": "^7.1.0",
-    "react-native-get-location": "^1.4.3"
+    "react-native-get-location": "^1.4.3",
+    "react-native-vector-icons": "^7.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.8.4",

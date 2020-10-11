@@ -12,6 +12,8 @@ target 'KnighthacksMobileApp' do
 
   pod 'ReactNativeGetLocation', :path => '../node_modules/react-native-get-location'
 
+  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
+
   target 'KnighthacksMobileAppTests' do
     inherit! :complete
     # Pods for testing

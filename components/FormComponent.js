@@ -4,12 +4,14 @@ import {
   Platform,
   Text,
   View,
-  ScrollView,
+  TouchableOpacity
 } from 'react-native';
 
 import {Button, Image, Input} from 'react-native-elements';
 
 import SpeciesStatusComponent from './SpeciesStatusComponent.js';
+
+import Icon from 'react-native-vector-icons/Ionicons';
 
 const initialState = {
   latitude: '',
@@ -50,12 +52,21 @@ export default class FormComponent extends React.Component {
     return (
       <>
         <View
-          style={{marginLeft: 'auto', marginRight: 'auto', marginBottom: 30}}>
+          style={{marginLeft: 0, marginRight: 0, marginBottom: 30}}>
           <Image
             source={{uri: this.props.photoURI}}
-            style={{width: 300, height: 300, borderRadius: 5}}
+            style={{width: '100%', height: 300, borderRadius: 5}}
             PlaceholderContent={<ActivityIndicator />}
           />
+          <TouchableOpacity 
+            style={{position: 'absolute', right: 5, top: 5}} 
+            onPress={this.props.onFormClose}>
+            <Icon
+              name={'close-outline'}
+              color='white'
+              size={30}
+            />
+          </TouchableOpacity>
         </View>
         <SpeciesStatusComponent uri={this.props.photoURI} />
         <View style={{flexDirection: 'row', marginTop: 40}}>

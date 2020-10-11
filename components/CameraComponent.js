@@ -2,22 +2,26 @@ import React from 'react';
 
 import {
   StyleSheet,
-  View,
-  Text,
   TouchableOpacity,
   KeyboardAvoidingView,
   SafeAreaView,
   ScrollView,
+  Dimensions,
 } from 'react-native';
 
 import {Overlay, Button} from 'react-native-elements';
 
 import {RNCamera} from 'react-native-camera';
 
+import {Grid, Row, Col} from 'react-native-easy-grid';
+import Icon from 'react-native-vector-icons/Ionicons';
+
 import FormComponent from './FormComponent.js';
 
+const {FlashMode: CameraFlashMode} = RNCamera.Constants;
+
 export default class CameraComponent extends React.Component {
-  state = {paused: false, photoURI: ''};
+  state = {paused: false, photoURI: '', flashMode: CameraFlashMode.off};
 
   render() {
     return (
@@ -27,27 +31,49 @@ export default class CameraComponent extends React.Component {
             this.camera = ref;
           }}
           type={RNCamera.Constants.Type.back}
-          flashMode={RNCamera.Constants.FlashMode.auto}
+          flashMode={this.state.flashMode}
           captureAudio={false}
           style={styles.preview}
           captureAudio={false}
         />
-        <View style={styles.captureContainer}>
-          <TouchableOpacity
-            onPress={this.takePicture.bind(this)}
-            style={this.state.paused ? styles.capturePaused : styles.capture}
-          />
-        </View>
+        <Grid style={styles.captureContainer}>
+          <Row>
+            <Col style={styles.alignCenter}>
+              <TouchableOpacity onPress={this.toggleFlashMode.bind(this)}>
+                <Icon
+                  name={this.state.flashMode === CameraFlashMode.on ? 'flash-sharp' : 'flash-off-sharp'}
+                  color='white'
+                  size={30}
+                />
+              </TouchableOpacity>
+            </Col>
+            <Col size={2} style={styles.alignCenter}>
+              <TouchableOpacity
+                onPress={this.takePicture.bind(this)}
+                style={this.state.paused ? styles.capturePaused : styles.capture}
+              />
+            </Col>
+            <Col style={styles.alignCenter}>
+              <TouchableOpacity onPress={this.showMapView.bind(this)}>
+                <Icon
+                  name={'map-sharp'}
+                  color='white'
+                  size={30}
+                />
+              </TouchableOpacity>
+            </Col>
+          </Row>
+        </Grid>
         <SafeAreaView>
           <Overlay
             isVisible={this.state.paused}
             onBackdropPress={this.newPicture}
-            overlayStyle={{minWidth: '90%', maxHeight: '90%', borderRadius: 10}}
+            overlayStyle={{minWidth: '90%', maxHeight: '93%', borderRadius: 10}}
             animationType={'slide'}
             transparent={true}>
             <KeyboardAvoidingView behavior="padding">
-              <ScrollView style={{marginTop: 10}}>
-                <FormComponent photoURI={this.state.photoURI} />
+              <ScrollView style={{marginTop: 0}}>
+                <FormComponent photoURI={this.state.photoURI} onFormClose={this.newPicture} />
                 <Button
                   type="clear"
                   title="Close"
@@ -61,6 +87,16 @@ export default class CameraComponent extends React.Component {
         </SafeAreaView>
       </>
     );
+  }
+
+  toggleFlashMode = () => {
+    this.setState({
+      flashMode: this.state.flashMode === CameraFlashMode.on ? CameraFlashMode.off : CameraFlashMode.on
+    });
+  }
+
+  showMapView = () => {
+    console.log('map view');
   }
 
   newPicture = () => {
@@ -85,6 +121,11 @@ export default class CameraComponent extends React.Component {
 }
 
 const styles = StyleSheet.create({
+  alignCenter: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
   preview: {
     flex: 1,
     justifyContent: 'flex-end',
@@ -92,8 +133,8 @@ const styles = StyleSheet.create({
   },
   captureContainer: {
     position: 'absolute',
-    alignSelf: 'center',
-    margin: 30,
+    width: Dimensions.get('window').width,
+    height: 100,
     bottom: 0,
   },
   capture: {
