@@ -20,6 +20,7 @@ export default class CameraComponent extends React.Component {
           type={RNCamera.Constants.Type.back}
           flashMode={RNCamera.Constants.FlashMode.on}
           style={styles.preview}
+          captureAudio={false}
         />
         <View style={styles.captureContainer}>
           <TouchableOpacity onPress={this.takePicture.bind(this)} style={styles.capture}/>

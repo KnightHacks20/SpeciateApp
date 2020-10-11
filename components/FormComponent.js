@@ -18,8 +18,6 @@ export default class FormComponent extends React.Component {
 
     handlePress(event) {
         console.log(this.state);
-
-        /* Uncomment this once we're ready for the API */
         // this.setState({loading: true})
         this.setState(initialState);
     }
@@ -31,14 +29,16 @@ export default class FormComponent extends React.Component {
                     <Input 
                         label='Latitude'
                         placeholder='DDD.dddd' 
-                        containerStyle={{paddingRight: 10, paddingLeft: 0, flex: 1}} 
+                        containerStyle={{paddingRight: 10, paddingLeft: 0, flex: 1}}
+                        labelStyle={{color: '#545454'}} 
                         onChangeText={(text) => this.setState({latitude: text})}
                         value={this.state.latitude}
                     />
                     <Input 
                         label='Longitude'
                         placeholder='DDD.dddd' 
-                        containerStyle={{paddingLeft: 10, paddingRight: 0, flex: 1}} 
+                        containerStyle={{paddingLeft: 10, paddingRight: 0, flex: 1}}
+                        labelStyle={{color: '#545454'}}  
                         onChangeText={(text) => this.setState({longitude: text})}
                         value={this.state.longitude}
                     />
@@ -47,6 +47,7 @@ export default class FormComponent extends React.Component {
                     label='Date of Sighting' 
                     placeholder='MM-DD-YY'
                     containerStyle={{paddingHorizontal: 0}}
+                    labelStyle={{color: '#545454'}} 
                     onChangeText={(text) => this.setState({date: text})}
                     value={this.state.date}
                 />
@@ -54,6 +55,7 @@ export default class FormComponent extends React.Component {
                     label='Time of Sighting' 
                     placeholder='HH:MM a.m. / p.m.'
                     containerStyle={{paddingHorizontal: 0}}
+                    labelStyle={{color: '#545454'}} 
                     onChangeText={(text) => this.setState({time: text})}
                     value={this.state.time}
                 />
@@ -61,6 +63,7 @@ export default class FormComponent extends React.Component {
                     label='Comments' 
                     placeholder=''
                     containerStyle={{paddingHorizontal: 0}}
+                    labelStyle={{color: '#545454'}} 
                     onChangeText={(text) => this.setState({comments: text})}
                     value={this.state.comments}
                 />
@@ -68,6 +71,7 @@ export default class FormComponent extends React.Component {
                     title='Submit' 
                     loading={this.state.loading} 
                     onPress={(e) => this.handlePress(e)}
+                    buttonStyle={{borderRadius: 50, height: 50}}
                 />
             </>
         );
