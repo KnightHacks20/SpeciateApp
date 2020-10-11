@@ -26,7 +26,7 @@ export default class SpeciesStatusComponent extends React.Component {
     const body = new FormData();
     body.append('file', file);
     const url =
-      'https://www.floydlabs.com/serve/HEymaCcSNwJrkYHyCQHy3Q/predict';
+      'https://www.floydlabs.com/serve/rHpqVCwRkZVVau2fXW4fgK/predict';
 
     fetch(url, {
       method: 'POST',
