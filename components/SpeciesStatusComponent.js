@@ -52,6 +52,8 @@ export default class SpeciesStatusComponent extends React.Component {
             title="Identify"
             onPress={(e) => this.handlePress(e)}
             loading={this.state.isLoading}
+            buttonStyle={{height: 50, borderRadius: 8}}
+            containerStyle={{marginBottom: 10}}
           />
         ) : (
           <View>

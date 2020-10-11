@@ -52,7 +52,7 @@ export default class FormComponent extends React.Component {
     return (
       <>
         <View
-          style={{marginLeft: 0, marginRight: 0, marginBottom: 30}}>
+          style={{marginLeft: 0, marginRight: 0, marginBottom: 0}}>
           <Image
             source={{uri: this.props.photoURI}}
             style={{width: '100%', height: 300, borderRadius: 5}}
@@ -68,6 +68,8 @@ export default class FormComponent extends React.Component {
             />
           </TouchableOpacity>
         </View>
+        <View style={{marginLeft: 40, marginRight: 40, marginTop: 16, marginBottom: 16, 
+                      backgroundColor: '#D5D5D5', height: 1}} />
         <SpeciesStatusComponent uri={this.props.photoURI} />
         <View style={{flexDirection: 'row', marginTop: 40}}>
           <Input
@@ -119,14 +121,14 @@ export default class FormComponent extends React.Component {
                 color: 'green',
                 fontSize: 18,
               }}>
-              Submission succesful!
+              Submission successful!
             </Text>
           )}
           <Button
             title="Submit"
             loading={this.state.loading}
             onPress={(e) => this.handlePress(e)}
-            buttonStyle={{height: 50}}
+            buttonStyle={{height: 50, borderRadius: 8}}
             containerStyle={{marginBottom: 10, paddingHorizontal: 10}}
           />
         </View>
