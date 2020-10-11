@@ -7,10 +7,6 @@ import {
   View,
 } from 'react-native';
 
-import {
-  StyleSheet,
-  View
-} from 'react-native';
 
 import CameraComponent from './components/CameraComponent';
 import FormComponent from './components/FormComponent';

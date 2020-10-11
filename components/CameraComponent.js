@@ -51,7 +51,7 @@ export default class CameraComponent extends React.Component {
 
 const styles = StyleSheet.create({
   preview: {
-    height: 400,
+    flex: 1,
     justifyContent: 'flex-end',
     alignItems: 'center',
   },
