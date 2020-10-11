@@ -2,13 +2,17 @@ import React from 'react';
 
 import ImageMapper from 'react-native-image-mapper';
 
+const lowDensityColor = 'grey';
+const medDensityColor = 'blue';
+const highDensityColor = 'red';
+
 const MAPPING = [{
   id: '0',
   name: 'Species 1',
   shape: 'circle',
   x1: 80,
   y1: 110,
-  prefill: 'red',
+  prefill: medDensityColor,
   radius: 15,
 },
 {
@@ -17,7 +21,7 @@ const MAPPING = [{
   shape: 'circle',
   x1: 120,
   y1: 120,
-  prefill: 'red',
+  prefill: highDensityColor,
   radius: 15,
 },
 {
@@ -26,7 +30,7 @@ const MAPPING = [{
   shape: 'circle',
   x1: 200,
   y1: 400,
-  prefill: 'red',
+  prefill: lowDensityColor,
   radius: 15,
 },
 {
@@ -35,7 +39,7 @@ const MAPPING = [{
   shape: 'circle',
   x1: 250,
   y1: 500,
-  prefill: 'red',
+  prefill: lowDensityColor,
   radius: 15,
 },
 {
@@ -44,7 +48,7 @@ const MAPPING = [{
   shape: 'circle',
   x1: 280,
   y1: 450,
-  prefill: 'red',
+  prefill: medDensityColor,
   radius: 15,
 },
 {
@@ -53,7 +57,7 @@ const MAPPING = [{
   shape: 'circle',
   x1: 30,
   y1: 15,
-  prefill: 'red',
+  prefill: highDensityColor,
   radius: 15,
 },
 {
@@ -62,7 +66,7 @@ const MAPPING = [{
   shape: 'circle',
   x1: 199,
   y1: 80,
-  prefill: 'red',
+  prefill: lowDensityColor,
   radius: 15,
 },
 {
@@ -71,7 +75,7 @@ const MAPPING = [{
   shape: 'circle',
   x1: 200,
   y1: 50,
-  prefill: 'red',
+  prefill: highDensityColor,
   radius: 15,
 },
 {
@@ -80,7 +84,7 @@ const MAPPING = [{
   shape: 'circle',
   x1: 290,
   y1: 470,
-  prefill: 'red',
+  prefill: lowDensityColor,
   radius: 15,
 },
 {
@@ -89,7 +93,7 @@ const MAPPING = [{
   shape: 'circle',
   x1: 235,
   y1: 270,
-  prefill: 'red',
+  prefill: medDensityColor,
   radius: 15,
 },
 {
@@ -98,7 +102,7 @@ const MAPPING = [{
   shape: 'circle',
   x1: 280,
   y1: 300,
-  prefill: 'red',
+  prefill: medDensityColor,
   radius: 15,
 },
 {
@@ -107,7 +111,7 @@ const MAPPING = [{
   shape: 'circle',
   x1: 260,
   y1: 300,
-  prefill: 'red',
+  prefill: highDensityColor,
   radius: 15,
 },
 {
@@ -116,7 +120,7 @@ const MAPPING = [{
   shape: 'circle',
   x1: 240,
   y1: 270,
-  prefill: 'red',
+  prefill: lowDensityColor,
   radius: 15,
 },
 {
@@ -125,7 +129,7 @@ const MAPPING = [{
   shape: 'circle',
   x1: 219,
   y1: 198,
-  prefill: 'red',
+  prefill: medDensityColor,
   radius: 15,
 },
 {
@@ -134,7 +138,7 @@ const MAPPING = [{
   shape: 'circle',
   x1: 281,
   y1: 329,
-  prefill: 'red',
+  prefill: highDensityColor,
   radius: 15,
 },
 {
@@ -143,7 +147,7 @@ const MAPPING = [{
   shape: 'circle',
   x1: 168,
   y1: 125,
-  prefill: 'red',
+  prefill: lowDensityColor,
   radius: 15,
 },
 {
@@ -152,7 +156,7 @@ const MAPPING = [{
   shape: 'circle',
   x1: 100,
   y1: 150,
-  prefill: 'red',
+  prefill: medDensityColor,
   radius: 15,
 },
 {
@@ -161,7 +165,7 @@ const MAPPING = [{
   shape: 'circle',
   x1: 200,
   y1: 30,
-  prefill: 'red',
+  prefill: lowDensityColor,
   radius: 15,
 },
 {
@@ -170,7 +174,7 @@ const MAPPING = [{
   shape: 'circle',
   x1: 102,
   y1: 40,
-  prefill: 'red',
+  prefill: highDensityColor,
   radius: 15,
 },
 {
@@ -179,7 +183,7 @@ const MAPPING = [{
   shape: 'circle',
   x1: 219,
   y1: 198,
-  prefill: 'red',
+  prefill: medDensityColor,
   radius: 15,
 },
 {
@@ -188,7 +192,7 @@ const MAPPING = [{
   shape: 'circle',
   x1: 178,
   y1: 209,
-  prefill: 'red',
+  prefill: lowDensityColor,
   radius: 15,
 },
 {
@@ -197,7 +201,7 @@ const MAPPING = [{
   shape: 'circle',
   x1: 145,
   y1: 290,
-  prefill: 'red',
+  prefill: lowDensityColor,
   radius: 15,
 },
 {
@@ -206,7 +210,7 @@ const MAPPING = [{
   shape: 'circle',
   x1: 245,
   y1: 555,
-  prefill: 'red',
+  prefill: highDensityColor,
   radius: 15,
 },
 {
@@ -215,7 +219,7 @@ const MAPPING = [{
   shape: 'circle',
   x1: 255,
   y1: 580,
-  prefill: 'red',
+  prefill: medDensityColor,
   radius: 15,
 },
 {
@@ -224,7 +228,7 @@ const MAPPING = [{
   shape: 'circle',
   x1: 265,
   y1: 550,
-  prefill: 'red',
+  prefill: highDensityColor,
   radius: 15,
 },
 {
@@ -233,7 +237,7 @@ const MAPPING = [{
   shape: 'circle',
   x1: 290,
   y1: 540,
-  prefill: 'red',
+  prefill: highDensityColor,
   radius: 15,
 },
 ]
